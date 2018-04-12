@@ -10,5 +10,6 @@ fn main() {
     scope.insert("num", "22");
     scope.insert("name", "John");
     scope.insert("book", "Harry Potter");
+    scope.insert("age", "30");
     mvc::mvc(&scope);
 }
