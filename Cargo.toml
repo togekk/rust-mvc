@@ -5,5 +5,3 @@ authors = ["togekk <togekk@gmail.com>"]
 
 [dependencies]
 stdweb = { path = "node_modules/stdweb" }
-fps_clock = "2.0"
-regex = "0.2.10"

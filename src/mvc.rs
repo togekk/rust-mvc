@@ -1,5 +1,4 @@
 extern crate stdweb;
-extern crate regex;
 
 use std::collections::HashMap;
 use stdweb::web::{
@@ -15,11 +14,14 @@ pub fn mvc(scope: &HashMap<&str, &str>) {
 
     for i in 0..len {
         let node = node_list.item(i).unwrap();
-        let parent_node = node.parent_node().unwrap();
+        // let parent_node = node.parent_node().unwrap();
         let text = node.text_content().unwrap();
 
         if let Some(_start) = text.find("{{") {
-            let node_new = document().create_element(&node.node_name()).unwrap();
+            // let node_new = document().create_element(&node.node_name()).unwrap();
+            // while (node.first_child().is_null()) {
+                node.remove_child(&node.first_child().unwrap()).unwrap();
+            // }
 
             let split = text.split("{{");
 
@@ -31,26 +33,27 @@ pub fn mvc(scope: &HashMap<&str, &str>) {
                     match scope.get(t) {
                         Some(scope_found) => {
                             let item = document().create_text_node(&scope_found);
-                            node_new.append_child(&item);
+                            node.append_child(&item);
                         },
                         None => println!("")
                     }
 
                     let rest = &s[end+2..];
                     let item = document().create_text_node(&rest);
-                    node_new.append_child(&item);
+                    node.append_child(&item);
 
                 } else {
 
                     let item = document().create_text_node(&s);
-                    node_new.append_child(&item);
+                    node.append_child(&item);
                     
                 }
 
             }
 
-            parent_node.remove_child(&node).unwrap();
-            parent_node.append_child(&node_new);
+            // parent_node.remove_child(&node).unwrap();
+
+            // node.append_child(&node_new);
         }
 
         

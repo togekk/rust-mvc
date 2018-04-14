@@ -1,5 +1,4 @@
 extern crate stdweb;
-extern crate regex;
 
 use std::collections::HashMap;
 
