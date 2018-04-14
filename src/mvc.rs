@@ -10,10 +10,19 @@ pub fn mvc(scope: &HashMap<&str, &str>) {
 
     let body = document().body().unwrap();
     let node_list = body.child_nodes();
+    render_models(node_list, scope);
+}
+
+fn render_models(node_list: stdweb::web::NodeList, scope: &HashMap<&str, &str>) {
     let len = node_list.len();
 
     for i in 0..len {
         let node = node_list.item(i).unwrap();
+
+        let child_node_list = node.child_nodes();
+        if child_node_list.len() > 1 {
+            render_models(child_node_list, scope);
+        };
         // let parent_node = node.parent_node().unwrap();
         let text = node.text_content().unwrap();
 
@@ -22,6 +31,7 @@ pub fn mvc(scope: &HashMap<&str, &str>) {
             // while (node.first_child().is_null()) {
                 node.remove_child(&node.first_child().unwrap()).unwrap();
             // }
+
 
             let split = text.split("{{");
 
@@ -51,13 +61,9 @@ pub fn mvc(scope: &HashMap<&str, &str>) {
 
             }
 
-            // parent_node.remove_child(&node).unwrap();
-
-            // node.append_child(&node_new);
         }
 
         
 
     }
-
 }
