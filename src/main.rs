@@ -7,7 +7,7 @@ use stdweb::web::{
 };
 
 fn main() {
-    let frag = document().create_document_fragment().unwrap();
+    let frag = document().create_document_fragment();
 
     for _i in 0..10 {
         let div = document().create_element("div").unwrap();

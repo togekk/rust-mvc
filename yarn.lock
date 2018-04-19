@@ -3429,7 +3429,7 @@ statuses@~1.4.0:
 
 stdweb@koute/stdweb:
   version "0.0.0"
-  resolved "https://codeload.github.com/koute/stdweb/tar.gz/96009f3a01c0c8679fd62e135dd55592efc076aa"
+  resolved "https://codeload.github.com/koute/stdweb/tar.gz/0ca1aaec745983f57acc33d20b37ab93907decb1"
 
 stream-browserify@^2.0.1:
   version "2.0.1"

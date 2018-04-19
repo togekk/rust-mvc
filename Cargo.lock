@@ -64,7 +64,7 @@ dependencies = [
 name = "rust"
 version = "0.1.0"
 dependencies = [
- "stdweb 0.4.3",
+ "stdweb 0.4.4",
 ]
 
 [[package]]
@@ -105,7 +105,7 @@ dependencies = [
 
 [[package]]
 name = "stdweb"
-version = "0.4.3"
+version = "0.4.4"
 dependencies = [
  "discard 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "futures 0.1.21 (registry+https://github.com/rust-lang/crates.io-index)",
