@@ -1,22 +1,23 @@
 extern crate stdweb;
 
 use std::collections::HashMap;
-use stdweb::web::{
-    document,
-    INode,
-    NodeList
-};
+use stdweb::web::{document, INode, IParentNode, NodeList};
 
-pub fn mvc(scope: &HashMap<&str, &str>) {
+pub fn mvc(html: &str, scope: &HashMap<&str, &str>) {
+    let app = document().query_selector("app-component").unwrap().unwrap();
+    let frag = document().create_document_fragment();
+    let div = document().create_element("div").unwrap();
+    js!(@{&div}.innerHTML = @{html});
 
-    let body = document().body().unwrap();
-    let node_list = body.child_nodes();
+    let node_list = div.child_nodes();
     let count: i64 = 0;
-    render_models(node_list, scope, count);
+    if render_models(node_list, scope, count) {
+        frag.append_child(&div);
+        app.append_child(&frag);
+    };
 }
 
 fn render_models(node_list: NodeList, scope: &HashMap<&str, &str>, mut count: i64) -> bool {
-    
     let len = node_list.len();
 
     for i in 0..len {
