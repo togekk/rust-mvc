@@ -1,5 +1,7 @@
 "use strict";
 
+import './pwabuilder-sw-register.js';
+
 const wasmCacheVersion = 1;
 const url = "rust.wasm";
 
