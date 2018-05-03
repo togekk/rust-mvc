@@ -3,8 +3,9 @@ extern crate stdweb;
 use std::collections::HashMap;
 use stdweb::web::{document, INode, IParentNode, NodeList};
 
-pub fn mvc(html: &str, scope: &HashMap<&str, &str>) {
+pub fn init(html: &str, scope: &HashMap<&str, &str>) {
     let app = document().query_selector("app-component").unwrap().unwrap();
+    // app.remove_child(&app.first_child().unwrap()).unwrap();
     let frag = document().create_document_fragment();
     let div = document().create_element("div").unwrap();
     js!(@{&div}.innerHTML = @{&html});
@@ -24,26 +25,26 @@ fn render_models(node_list: NodeList, scope: &HashMap<&str, &str>, mut count: i6
         let node = node_list.item(i).unwrap();
         let mut text = node.text_content().unwrap();
 
-        // if count > 0 {
-            let child_node_list = node.child_nodes();
-            if child_node_list.len() > 0 {
-                js!(console.log(@{&node}));
-                
-                count += 1;
-                render_models(child_node_list, scope, count);
-                count -= 1;
-            } else {
-                for (key, val) in scope {
-                    let mut key_new: String = "{{".to_owned();
-                    key_new.push_str(key);
-                    key_new.push_str("}}");
-                    text = text.replace(&key_new, val);
-                }
-
-                js!(@{&node}.textContent = @{text});
+        let child_node_list = node.child_nodes();
+        if child_node_list.len() > 0 {
+            count += 1;
+            render_models(child_node_list, scope, count);
+            count -= 1;
+        } else {
+            for (key, val) in scope {
+                let mut key_new: String = "{{".to_owned();
+                key_new.push_str(key);
+                key_new.push_str("}}");
+                text = text.replace(&key_new, val);
             }
-        // }
+
+            js!(@{&node}.textContent = @{text});
+        }
     }
 
     return true;
 }
+
+// pub fn mousemove() {
+//     console!(log, "OK");
+// }
