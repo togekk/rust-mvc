@@ -2,7 +2,7 @@
 
 import './pwabuilder-sw-register.js';
 
-const wasmCacheVersion = 3;
+const wasmCacheVersion = 4;
 const url = "rust.wasm";
 
 // 1. +++ instantiateCachedURL() +++ //
