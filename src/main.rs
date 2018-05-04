@@ -22,15 +22,16 @@ fn main() {
     window().add_event_listener(move |event: MouseMoveEvent| {
         let x: String = (f64::from(event.client_x()) * 3.141592654).to_string();
         let y: String = (f64::from(event.client_y()) * 3.141592654).to_string();
-        *scope.get_mut("x").unwrap() = x;
-        *scope.get_mut("y").unwrap() = y;
+        mvc::set_scope(&mut scope, "x", &x);
+        mvc::set_scope(&mut scope, "y", &y);
+        // *scope.get_mut("y").unwrap() = y;
         mvc::render(HTML, &scope);
     });
 
     window().add_event_listener(move |_: ClickEvent| {
-        *scope_2.get_mut("name").unwrap() = "David".to_owned();
-        *scope_2.get_mut("x").unwrap() = "click!".to_owned();
-        *scope_2.get_mut("y").unwrap() = "click!".to_owned();
+        mvc::set_scope(&mut scope_2, "name", "David");
+        mvc::set_scope(&mut scope_2, "x", "click!");
+        mvc::set_scope(&mut scope_2, "y", "click!");
         mvc::render(HTML, &scope_2);
     });
 }

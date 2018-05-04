@@ -54,3 +54,7 @@ fn render_models(
 
     return true;
 }
+
+pub fn set_scope(scope: &mut HashMap<&str, String>, key: &str, val: &str) {
+    *scope.get_mut(key).unwrap() = val.to_owned();
+}
