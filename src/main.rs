@@ -3,6 +3,7 @@ extern crate stdweb;
 
 use std::collections::HashMap;
 use stdweb::traits::IMouseEvent;
+use stdweb::web::event::ClickEvent;
 use stdweb::web::event::MouseMoveEvent;
 use stdweb::web::{window, IEventTarget};
 
@@ -18,12 +19,20 @@ fn main() {
     mvc::init(HTML, &scope);
 
     window().add_event_listener(move |event: MouseMoveEvent| {
-        let x: String = f64::from(event.client_x()).to_string();
-        let y: String = f64::from(event.client_y()).to_string();
-        scope = HashMap::new();
+        let x: String = (f64::from(event.client_x()) * 3.141592654).to_string();
+        let y: String = (f64::from(event.client_y()) * 3.141592654).to_string();
+        let mut scope = HashMap::new();
         scope.insert("name", "John".to_owned());
         scope.insert("x", x);
         scope.insert("y", y);
+        mvc::init(HTML, &scope);
+    });
+
+    window().add_event_listener(move |_: ClickEvent| {
+        let mut scope = HashMap::new();
+        scope.insert("name", "David".to_owned());
+        scope.insert("x", "click!".to_owned());
+        scope.insert("y", "click!".to_owned());
         mvc::init(HTML, &scope);
     });
 }
