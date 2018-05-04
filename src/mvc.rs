@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use std::vec::Vec;
 use stdweb::web::{document, INode, IParentNode, Node, NodeList};
 
-pub fn init(html: &str, scope: &HashMap<&str, String>) {
+pub fn render(html: &str, scope: &HashMap<&str, String>) {
     let app = document().query_selector("app-component").unwrap().unwrap();
     if app.has_child_nodes() {
         app.remove_child(&app.first_child().unwrap()).unwrap();

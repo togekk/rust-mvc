@@ -16,7 +16,7 @@ fn main() {
     scope.insert("name", "John".to_owned());
     scope.insert("x", "null".to_owned());
     scope.insert("y", "null".to_owned());
-    mvc::init(HTML, &scope);
+    mvc::render(HTML, &scope);
 
     window().add_event_listener(move |event: MouseMoveEvent| {
         let x: String = (f64::from(event.client_x()) * 3.141592654).to_string();
@@ -25,7 +25,7 @@ fn main() {
         scope.insert("name", "John".to_owned());
         scope.insert("x", x);
         scope.insert("y", y);
-        mvc::init(HTML, &scope);
+        mvc::render(HTML, &scope);
     });
 
     window().add_event_listener(move |_: ClickEvent| {
@@ -33,6 +33,6 @@ fn main() {
         scope.insert("name", "David".to_owned());
         scope.insert("x", "click!".to_owned());
         scope.insert("y", "click!".to_owned());
-        mvc::init(HTML, &scope);
+        mvc::render(HTML, &scope);
     });
 }
