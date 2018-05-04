@@ -6,9 +6,6 @@ use stdweb::web::{document, INode, IParentNode, Node, NodeList};
 
 pub fn render(html: &str, scope: &HashMap<&str, String>) {
     let app = document().query_selector("app-component").unwrap().unwrap();
-    if app.has_child_nodes() {
-        app.remove_child(&app.first_child().unwrap()).unwrap();
-    }
     let frag = document().create_document_fragment();
     let div = document().create_element("div").unwrap();
     js!(@{&div}.innerHTML = @{&html});
@@ -18,6 +15,9 @@ pub fn render(html: &str, scope: &HashMap<&str, String>) {
     let count: i64 = 0;
     if render_models(node_list, &mut mvc_node_list, scope, count) {
         frag.append_child(&div);
+        if app.has_child_nodes() {
+            app.remove_child(&app.first_child().unwrap()).unwrap();
+        }
         app.append_child(&frag);
     };
 }

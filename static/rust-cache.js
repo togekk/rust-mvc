@@ -2,7 +2,7 @@
 
 import './pwabuilder-sw-register.js';
 
-const wasmCacheVersion = 5;
+const wasmCacheVersion = 1;
 const url = "rust.wasm";
 
 // 1. +++ instantiateCachedURL() +++ //
@@ -20,25 +20,25 @@ function instantiateCachedURL(dbVersion, url, importObject) {
     // With all the Promise helper functions defined, we can now express the core
     // logic of an IndexedDB cache lookup. We start by trying to open a database.
     return openDatabase(dbName, dbVersion, storeName).then(db => {
-        // Now see if we already have a compiled Module with key 'url' in 'db':
-        return lookupInDatabase(db, storeName, url).then(result => {
-            // We do! Instantiate it with the given import object.
-            console.log(`Found ${url} in wasm cache`);
-            return result;
-            // return WebAssembly.instantiate(module);
-        }, errMsg => {
-            // Nope! Compile from scratch and then store the compiled Module in 'db'
-            // with key 'url' for next time.
-            console.log(errMsg);
-            return fetch(url)
-                .then(response => response.arrayBuffer())
-                .then(bytes => WebAssembly.compile(bytes))
-                .then(result => {
-                    storeInDatabase(db, result, storeName, url);
-                    return result;
-                })
-        });
-    },
+            // Now see if we already have a compiled Module with key 'url' in 'db':
+            return lookupInDatabase(db, storeName, url).then(result => {
+                // We do! Instantiate it with the given import object.
+                console.log(`Found ${url} in wasm cache`);
+                return result;
+                // return WebAssembly.instantiate(module);
+            }, errMsg => {
+                // Nope! Compile from scratch and then store the compiled Module in 'db'
+                // with key 'url' for next time.
+                console.log(errMsg);
+                return fetch(url)
+                    .then(response => response.arrayBuffer())
+                    .then(bytes => WebAssembly.compile(bytes))
+                    .then(result => {
+                        storeInDatabase(db, result, storeName, url);
+                        return result;
+                    })
+            });
+        },
         errMsg => {
             // If opening the database failed (due to permissions or quota), fall back
             // to simply fetching and compiling the module and don't try to store the
@@ -165,7 +165,7 @@ if (typeof Rust === "undefined") {
             }
         };
 
-        Module.STDWEB_PRIVATE.noop = function () { };
+        Module.STDWEB_PRIVATE.noop = function () {};
         Module.STDWEB_PRIVATE.to_js = function to_js(address) {
             var kind = HEAPU8[address + 12];
             if (kind === 0) {
