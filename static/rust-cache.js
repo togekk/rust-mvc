@@ -552,50 +552,14 @@ if (typeof Rust === "undefined") {
 
         const __imports = {
             env: {
-                "__extjs_97495987af1720d8a9a923fa4683a7b683e3acd6": function ($0, $1) {
-                    console.error('Panic error message:', Module.STDWEB_PRIVATE.to_js_string($0, $1));
-                },
                 "__extjs_72fc447820458c720c68d0d8e078ede631edd723": function ($0, $1, $2) {
                     console.error('Panic location:', Module.STDWEB_PRIVATE.to_js_string($0, $1) + ':' + $2);
                 },
-                "__extjs_db0226ae1bbecd407e9880ee28ddc70fc3322d9c": function ($0) {
-                    $0 = Module.STDWEB_PRIVATE.to_js($0);
-                    Module.STDWEB_PRIVATE.unregister_raw_value(($0));
+                "__extjs_dc2fd915bd92f9e9c6a3bd15174f1414eee3dbaf": function () {
+                    console.error('Encountered a panic!');
                 },
-                "__extjs_41547e3a1f0be5177a48e889793ecc0a7f6961aa": function ($0, $1, $2) {
-                    $1 = Module.STDWEB_PRIVATE.to_js($1);
-                    $2 = Module.STDWEB_PRIVATE.to_js($2);
-                    Module.STDWEB_PRIVATE.from_js($0, (function () {
-                        ($1).textContent = ($2)
-                    })());
-                },
-                "__extjs_80d6d56760c65e49b7be8b6b01c1ea861b046bf0": function ($0) {
-                    Module.STDWEB_PRIVATE.decrement_refcount($0);
-                },
-                "__extjs_549e982121a9e76fa0c1295dd69b3084ab9688ff": function ($0, $1) {
-                    $1 = Module.STDWEB_PRIVATE.to_js($1);
-                    Module.STDWEB_PRIVATE.from_js($0, (function () {
-                        return ($1).textContent;
-                    })());
-                },
-                "__extjs_c324d9292a5a2f33cd26652722c3cc361e335e97": function ($0, $1) {
-                    $1 = Module.STDWEB_PRIVATE.to_js($1);
-                    Module.STDWEB_PRIVATE.from_js($0, (function () {
-                        return ($1).createDocumentFragment();
-                    })());
-                },
-                "__extjs_bd7f6e324f00cca5b26b7c6dc239a28b71e047b4": function ($0, $1) {
-                    $1 = Module.STDWEB_PRIVATE.to_js($1);
-                    Module.STDWEB_PRIVATE.from_js($0, (function () {
-                        return ($1).length;
-                    })());
-                },
-                "__extjs_222c2fb5a29f68d0c91605a201d353ebe248e0ee": function ($0, $1, $2) {
-                    $1 = Module.STDWEB_PRIVATE.to_js($1);
-                    $2 = Module.STDWEB_PRIVATE.to_js($2);
-                    Module.STDWEB_PRIVATE.from_js($0, (function () {
-                        return ($1)[($2)];
-                    })());
+                "__extjs_cf32fb39093cd2549f37c2d392ef3198dcaa2ad4": function ($0) {
+                    return (Module.STDWEB_PRIVATE.acquire_js_reference($0) instanceof Node) | 0;
                 },
                 "__extjs_496ebd7b1bc0e6eebd7206e8bee7671ea3b8006f": function ($0, $1, $2) {
                     $1 = Module.STDWEB_PRIVATE.to_js($1);
@@ -604,13 +568,26 @@ if (typeof Rust === "undefined") {
                         return ($1).querySelector(($2));
                     })());
                 },
-                "__extjs_cf32fb39093cd2549f37c2d392ef3198dcaa2ad4": function ($0) {
-                    return (Module.STDWEB_PRIVATE.acquire_js_reference($0) instanceof Node) | 0;
+                "__extjs_80d6d56760c65e49b7be8b6b01c1ea861b046bf0": function ($0) {
+                    Module.STDWEB_PRIVATE.decrement_refcount($0);
                 },
-                "__extjs_4cc2b2ed53586a2bd32ca2206724307e82bb32ff": function ($0, $1) {
-                    $0 = Module.STDWEB_PRIVATE.to_js($0);
+                "__extjs_92703949057b4a5481134e61f673bf94160d6d50": function ($0, $1) {
                     $1 = Module.STDWEB_PRIVATE.to_js($1);
-                    ($0).appendChild(($1));
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).firstChild;
+                    })());
+                },
+                "__extjs_e72c0fa59b4192eaa92dc61cdc746eab194f8d89": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).clientY;
+                    })());
+                },
+                "__extjs_86c685e0901666c70fef8443f2cdbf65c618397c": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return eval(($1))
+                    })());
                 },
                 "__extjs_49bb060f28a2d83ee61afa0a7e5cad450c8258d0": function ($0, $1) {
                     $1 = Module.STDWEB_PRIVATE.to_js($1);
@@ -618,12 +595,74 @@ if (typeof Rust === "undefined") {
                         return ($1).childNodes;
                     })());
                 },
-                "__extjs_dc2fd915bd92f9e9c6a3bd15174f1414eee3dbaf": function () {
-                    console.error('Encountered a panic!');
+                "__extjs_ab0172912f8fa2965c74194116b45b78b52b67a5": function ($0, $1, $2, $3) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    $2 = Module.STDWEB_PRIVATE.to_js($2);
+                    $3 = Module.STDWEB_PRIVATE.to_js($3);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        var a;
+                        if (!!($1).attributes) a = ($2).attributes[($3)];
+                        return a;
+                    })());
+                },
+                "__extjs_9f22d4ca7bc938409787341b7db181f8dd41e6df": function ($0) {
+                    Module.STDWEB_PRIVATE.increment_refcount($0);
+                },
+                "__extjs_222c2fb5a29f68d0c91605a201d353ebe248e0ee": function ($0, $1, $2) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    $2 = Module.STDWEB_PRIVATE.to_js($2);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1)[($2)];
+                    })());
+                },
+                "__extjs_7c5535365a3df6a4cc1f59c4a957bfce1dbfb8ee": function ($0, $1, $2, $3) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    $2 = Module.STDWEB_PRIVATE.to_js($2);
+                    $3 = Module.STDWEB_PRIVATE.to_js($3);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        var listener = ($1);
+                        ($2).addEventListener(($3), listener);
+                        return listener;
+                    })());
+                },
+                "__extjs_0aced9e2351ced72f1ff99645a129132b16c0d3c": function ($0) {
+                    var value = Module.STDWEB_PRIVATE.get_raw_value($0);
+                    return Module.STDWEB_PRIVATE.register_raw_value(value);
+                },
+                "__extjs_a342681e5c1e3fb0bdeac6e35d67bf944fcd4102": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).value;
+                    })());
+                },
+                "__extjs_c023351d5bff43ef3dd317b499821cd4e71492f0": function ($0) {
+                    var r = Module.STDWEB_PRIVATE.acquire_js_reference($0);
+                    return (r instanceof DOMException) && (r.name === "HierarchyRequestError");
+                },
+                "__extjs_de2896a7ccf316486788a4d0bc433c25d2f1a12b": function ($0) {
+                    var r = Module.STDWEB_PRIVATE.acquire_js_reference($0);
+                    return (r instanceof DOMException) && (r.name === "NotFoundError");
                 },
                 "__extjs_1c8769c3b326d77ceb673ada3dc887cf1d509509": function ($0) {
                     Module.STDWEB_PRIVATE.from_js($0, (function () {
                         return document;
+                    })());
+                },
+                "__extjs_4cc2b2ed53586a2bd32ca2206724307e82bb32ff": function ($0, $1) {
+                    $0 = Module.STDWEB_PRIVATE.to_js($0);
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    ($0).appendChild(($1));
+                },
+                "__extjs_7f455164e1ea4b48801a873e1092a18e7d4feeaa": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).name
+                    })());
+                },
+                "__extjs_dafc7a42f11dfd59d938a8bf392d728f25dc1191": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).clientX;
                     })());
                 },
                 "__extjs_f31c0d3e2bdf54344b6070149a6236a49d060cc7": function ($0, $1, $2) {
@@ -631,6 +670,127 @@ if (typeof Rust === "undefined") {
                     $2 = Module.STDWEB_PRIVATE.to_js($2);
                     Module.STDWEB_PRIVATE.from_js($0, (function () {
                         ($1).innerHTML = ($2)
+                    })());
+                },
+                "__extjs_7ed1f62e776725bc93d54f5154abfb28a460024a": function ($0) {
+                    return (Module.STDWEB_PRIVATE.acquire_js_reference($0) instanceof MouseEvent) | 0;
+                },
+                "__extjs_a3b76c5b7916fd257ee3f362dc672b974e56c476": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).success;
+                    })());
+                },
+                "__extjs_c50b4a6de9b77af29cda5432f603a6923190bc6b": function ($0, $1, $2) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    $2 = Module.STDWEB_PRIVATE.to_js($2);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        var a = 0;
+                        if (!!($1).attributes) a = ($2).attributes.length;
+                        return a;
+                    })());
+                },
+                "__extjs_55b8bcbe4a00526db0f78f2ed42425f6061a777a": function ($0, $1, $2, $3) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    $2 = Module.STDWEB_PRIVATE.to_js($2);
+                    $3 = Module.STDWEB_PRIVATE.to_js($3);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        try {
+                            return {
+                                value: function () {
+                                    return ($1).replaceChild(($2), ($3));
+                                }(),
+                                success: true
+                            };
+                        } catch (error) {
+                            return {
+                                error: error,
+                                success: false
+                            };
+                        }
+                    })());
+                },
+                "__extjs_74d5764ddc102a8d3b6252116087a68f2db0c9d4": function ($0) {
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return window;
+                    })());
+                },
+                "__extjs_9a2b6ec93337b4fadca4a407855c3987149ec418": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).hasChildNodes();
+                    })());
+                },
+                "__extjs_ff5103e6cc179d13b4c7a785bdce2708fd559fc0": function ($0) {
+                    Module.STDWEB_PRIVATE.tmp = Module.STDWEB_PRIVATE.to_js($0);
+                },
+                "__extjs_97495987af1720d8a9a923fa4683a7b683e3acd6": function ($0, $1) {
+                    console.error('Panic error message:', Module.STDWEB_PRIVATE.to_js_string($0, $1));
+                },
+                "__extjs_5ecfd7ee5cecc8be26c1e6e3c90ce666901b547c": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).error;
+                    })());
+                },
+                "__extjs_41547e3a1f0be5177a48e889793ecc0a7f6961aa": function ($0, $1, $2) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    $2 = Module.STDWEB_PRIVATE.to_js($2);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        ($1).textContent = ($2)
+                    })());
+                },
+                "__extjs_2bc54aa3905bf9d7edc7884681f00d9baff13f1e": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).value
+                    })());
+                },
+                "__extjs_bd7f6e324f00cca5b26b7c6dc239a28b71e047b4": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).length;
+                    })());
+                },
+                "__extjs_549e982121a9e76fa0c1295dd69b3084ab9688ff": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).textContent;
+                    })());
+                },
+                "__extjs_84355afea1755aaf0e679669281585900c995537": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).parentNode;
+                    })());
+                },
+                "__extjs_e031828dc4b7f1b8d9625d60486f03b0936c3f4f": function ($0, $1, $2) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    $2 = Module.STDWEB_PRIVATE.to_js($2);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        try {
+                            return {
+                                value: function () {
+                                    return ($1).removeChild(($2));
+                                }(),
+                                success: true
+                            };
+                        } catch (error) {
+                            return {
+                                error: error,
+                                success: false
+                            };
+                        }
+                    })());
+                },
+                "__extjs_db0226ae1bbecd407e9880ee28ddc70fc3322d9c": function ($0) {
+                    $0 = Module.STDWEB_PRIVATE.to_js($0);
+                    Module.STDWEB_PRIVATE.unregister_raw_value(($0));
+                },
+                "__extjs_c324d9292a5a2f33cd26652722c3cc361e335e97": function ($0, $1) {
+                    $1 = Module.STDWEB_PRIVATE.to_js($1);
+                    Module.STDWEB_PRIVATE.from_js($0, (function () {
+                        return ($1).createDocumentFragment();
                     })());
                 },
                 "__extjs_a8e1d9cfe0b41d7d61b849811ad1cfba32de989b": function ($0, $1, $2) {
@@ -695,7 +855,7 @@ if (typeof Rust === "undefined") {
     if (typeof window === "undefined" && typeof process === "object") {
         const fs = require("fs");
         const path = require("path");
-        const wasm_path = path.join(__dirname, url);
+        const wasm_path = path.join(__dirname, "rust.wasm");
         const buffer = fs.readFileSync(wasm_path);
         const mod = new WebAssembly.Module(buffer);
 

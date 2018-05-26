@@ -16,6 +16,7 @@ fn main() {
     scope.insert("name", "John".to_owned());
     scope.insert("x", "null".to_owned());
     scope.insert("y", "null".to_owned());
+    scope.insert("test", "30 == 30".to_owned());
     mvc::render(HTML, &scope);
     let mut scope_2 = scope.clone();
 
@@ -24,7 +25,6 @@ fn main() {
         let y: String = (f64::from(event.client_y()) * 3.141592654).to_string();
         mvc::set_scope(&mut scope, "x", &x);
         mvc::set_scope(&mut scope, "y", &y);
-        // *scope.get_mut("y").unwrap() = y;
         mvc::render(HTML, &scope);
     });
 
@@ -32,6 +32,7 @@ fn main() {
         mvc::set_scope(&mut scope_2, "name", "David");
         mvc::set_scope(&mut scope_2, "x", "click!");
         mvc::set_scope(&mut scope_2, "y", "click!");
+        mvc::set_scope(&mut scope_2, "test", "30 == 29");
         mvc::render(HTML, &scope_2);
     });
 }

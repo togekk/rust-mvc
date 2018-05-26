@@ -11,8 +11,10 @@ pub fn render(html: &str, scope: &HashMap<&str, String>) {
     js!(@{&div}.innerHTML = @{&html});
 
     let node_list = div.child_nodes();
+    let mut nodes_to_delete: Vec<Node> = Vec::new();
     let count: i64 = 0;
-    if render_models(node_list, scope, count) {
+    if render_models(node_list, scope, count, &mut nodes_to_delete) {
+        remove_nodes(&mut nodes_to_delete);
         frag.append_child(&div);
         if app.has_child_nodes() {
             app.replace_child(&frag, &app.first_child().unwrap())
@@ -23,41 +25,65 @@ pub fn render(html: &str, scope: &HashMap<&str, String>) {
     };
 }
 
-fn render_models(node_list: NodeList, scope: &HashMap<&str, String>, mut count: i64) -> bool {
+fn render_models(
+    node_list: NodeList,
+    scope: &HashMap<&str, String>,
+    mut count: i64,
+    nodes_to_delete: &mut Vec<Node>,
+) -> bool {
     let len = node_list.len();
 
     for i in 0..len {
         let node = node_list.item(i).unwrap();
-        let mut text = node.text_content().unwrap();
-
+        let mut show = true;
         let attr_len = get_length(&node);
         for i in 0..attr_len {
             let a = get_item(&node, i);
             match a {
-                Some(attr) => console!(log, get_value(&attr)),
+                Some(attr) => {
+                    if get_key(&attr) == "(show)" && !eval(&attr, scope) {
+                        show = false;
+                    };
+                }
                 None => {}
             }
         }
 
-        let child_node_list = node.child_nodes();
-        if child_node_list.len() > 0 {
-            count += 1;
-            render_models(child_node_list, scope, count);
-            count -= 1;
+        if !show {
+            nodes_to_delete.push(node.clone());
         } else {
-            // Models
-            for (key, val) in scope {
-                let mut key_new: String = "{{".to_owned();
-                key_new.push_str(key);
-                key_new.push_str("}}");
-                text = text.replace(&key_new, val);
-            }
+            let mut text = node.text_content().unwrap();
+            let child_node_list = node.child_nodes();
 
-            js!(@{&node}.textContent = @{text});
+            if child_node_list.len() > 0 {
+                count += 1;
+                render_models(child_node_list, scope, count, nodes_to_delete);
+                count -= 1;
+            } else {
+                // Models
+                for (key, val) in scope {
+                    let mut key_new: String = "{{".to_owned();
+                    key_new.push_str(key);
+                    key_new.push_str("}}");
+                    text = text.replace(&key_new, val);
+                }
+
+                js!(@{&node}.textContent = @{text});
+            }
         }
     }
 
     return true;
+}
+
+fn remove_nodes(nodes_to_delete: &mut Vec<Node>) {
+    for i in 0..nodes_to_delete.len() {
+        nodes_to_delete[i]
+            .parent_node()
+            .unwrap()
+            .remove_child(&nodes_to_delete[i])
+            .unwrap();
+    }
 }
 
 pub fn set_scope(scope: &mut HashMap<&str, String>, key: &str, val: &str) {
@@ -86,4 +112,18 @@ fn get_item(node: &Node, index: u32) -> Option<Node> {
 
 fn get_value(attr: &Node) -> String {
     js!(return @{attr}.value).try_into().unwrap()
+}
+
+fn get_key(attr: &Node) -> String {
+    js!(return @{attr}.name).try_into().unwrap()
+}
+
+fn eval(attr: &Node, scope: &HashMap<&str, String>) -> bool {
+    let attr_value: &str = &get_value(attr);
+    let scope_value = scope.get(attr_value).unwrap();
+    return eval_string(scope_value.to_string());
+}
+
+fn eval_string(str: String) -> bool {
+    js!(return eval(@{str})).try_into().unwrap()
 }
